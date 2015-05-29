@@ -1,0 +1,119 @@
+{
+    "parties": [
+        {
+            "United Kingdom": [
+                {
+                    "id": "CON",
+                    "name": "Conservative and Unionist Party",
+                    "nickname": "torries",
+                    "position": "center-right",
+                    "color": "#56A3DA"
+                },
+                {
+                    "id": "LAB",
+                    "name": "Labour Party",
+                    "nickname": "new labour",
+                    "position": "center-left",
+                    "color": "#D33327"
+                },
+                {
+                    "id": "LIB",
+                    "name": "Liberal Democrats",
+                    "nickname": "libdem",
+                    "position": "center",
+                    "color": "#F9B82D"
+                },
+                {
+                    "id": "UKIP",
+                    "name": "UK Independence Party",
+                    "nickname": "",
+                    "position": "right-wing",
+                    "color": "#9D1F60"
+                },
+                {
+                    "id": "GREEN",
+                    "name": "Green Party of England and Wales",
+                    "nickname": "",
+                    "position": "left-wing",
+                    "color": "#8CC63E"
+                }
+            ],
+            "Northern Ireland": [
+                {
+                    "id": "DUP",
+                    "name": "Democratic Unionist Party",
+                    "nickname": "",
+                    "position": "right-wing",
+                    "color": "#4155A4"
+                },
+                {
+                    "id": "SF",
+                    "name": "Sinn Féin",
+                    "nickname": "",
+                    "position": "left-wing",
+                    "color": "#A87C4F"
+                },
+                {
+                    "id": "SDLP",
+                    "name": "Social Democratic and Labour Party",
+                    "nickname": "",
+                    "position": "center-left",
+                    "color": "#F58A1F"
+                },
+                {
+                    "id": "UUP",
+                    "name": "Ulster Unionist Party",
+                    "nickname": "",
+                    "position": "center-right",
+                    "color": "#877A76"
+                },
+                {
+                    "id": "ALLIANCE",
+                    "name": "Alliance Party of Northern Ireland",
+                    "nickname": "",
+                    "position": "center",
+                    "color": "#877A76"
+                },
+                {
+                    "id": "GREEN",
+                    "name": "Green Party in Northern Ireland",
+                    "nickname": "",
+                    "position": "left-wing",
+                    "color": "#8CC63E"
+                }
+            ],
+            "Scotland": [
+                {
+                    "id": "SNP",
+                    "name": "Scottish National Party",
+                    "nickname": "",
+                    "position": "center-left",
+                    "color": "#F9EC31"
+                },
+                {
+                    "id": "GREEN",
+                    "name": "Scottish Green Party",
+                    "nickname": "",
+                    "position": "",
+                    "color": "#8CC63E"
+                },
+                {
+                    "id": "LAB",
+                    "name": "Scottish Labour Party",
+                    "nickname": "",
+                    "position": "center-left",
+                    "color": "#D33327"
+                }
+            ],
+            "Wales": [
+                {
+                    "id": "PC",
+                    "name": "Plaid Cymru",
+                    "nickname": "",
+                    "position": "left-wing",
+                    "color": "#386531"
+                }
+            ]
+        }
+    ]
+}
