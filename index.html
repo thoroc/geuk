@@ -19,99 +19,59 @@
 	<body>
 		<div id="content">
 			foo
+			<div id="grid"></div>
 			<div id="map">
 
 			</div>
 		</div>
 
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="node_modules/d3/d3.min.js"></script>
 		<script type="text/javascript" src="node_modules/d3-tip/index.js"></script>
+		<script type="text/javascript" src="node_modules/d3-plugins/hexbin/hexbin.js"></script>
 		<script type="text/javascript" src="assets/js/d3.legend.js"></script>
 		<script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script type="text/javascript" src="assets/js/d3.geuk.js"></script>
 		<script type="text/javascript">
-			var width = 540;
-			var height = 710;
 			var margin = {
 			    top: 50,
-			    right: 20,
-			    bottom: 20,
+			    right: 30,
+			    bottom: 30,
 			    left: 50
-			};
+			},
+			width = $(window).width() - margin.left - margin.right + 40,
+			height = $(window).height() - margin.top - margin.bottom + 60;
 
-			var color = d3.scale.category10();
+			var hexRadius = Math.floor((width / 12)*0.5);
+			var points = [];
+			for (var i = 0; i < 8; i++) {
+			    for (var j = 0; j < 12; j++) {
+			        points.push([hexRadius * j * 1.8, hexRadius * i * 1.5]);
+			    }
+			}
 
-			var tip = d3.tip()
-			  .attr('class', 'd3-tip')
-			  .offset([-10, 0])
-			  .html(function(d) {
-			    return "<span style='color:red'>" + d.name + "</span>";
+			var hexbin = d3.hexbin()
+			    .radius(hexRadius);
+
+			var svg = d3.select($("#grid").get(0)).append("svg")
+			    .attr("width", width + margin.left + margin.right)
+			    .attr("height", height + margin.top + margin.bottom)
+			    .append("g")
+			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			svg.append("g")
+			    .selectAll(".hexagon")
+			    .data(hexbin(points))
+			    .enter().append("path")
+			    .attr("class", "hexagon")
+			    .attr("d", function (d) {
+			    return "M" + d.x + "," + d.y + hexbin.hexagon();
+			})
+			    .attr("stroke", "#fff")
+			    .attr("stroke-width", "2px")
+			    .style("fill", function (d) {
+			    return "#dcdcdc"; //color(d.length);
 			});
-
-			var svg = d3.select('#map').append('svg')
-					    .attr('width', width + margin.left + margin.right)
-					    .attr('height', height + margin.top + margin.bottom);
-
-
-			svg.call(tip);
-
-			d3.json('data/constituency.json', function(error, json) {
-				// console.log(json);
-
-				var tiles = svg.selectAll('.constituency')
-								.data(json['constituency'])
-									.enter()
-								.append('polygon')
-								.attr('name', function(d){
-									return d.name;
-								})
-								.attr('points', function(d){
-									// console.log(d);
-									return d.polygon.map(function(d) {
-										return [d.x,d.y].join(",");
-									}).join(" ");
-								})
-								.attr('class', 'tile')
-								.attr('fill', function(d){
-									return color(d['region-name']);
-								})
-								.attr('data-legend', function(d) {
-									return d['region-name'];
-								})
-							    .on('mouseover', tip.show)
-						    	.on('mouseout', tip.hide);
-
-				var legend = svg.append("g")
-								.attr("class","legend")
-				    			.attr("transform","translate(480,30)")
-				    			.style("font-size","12px")
-				    			.call(d3.legend)
-				// add legend
-				// var legend = svg.append('g')
-				// 	.attr('class', 'legend')
-				// 	.attr('height', 100)
-				// 	.attr('width', 100)
-				// 	.attr('transform', 'translate(10,20)');
-
-		    	// legend.selectAll('rect')
-				// 	.data(json)
-				// 		.enter()
-				// 	.append('legend')
-				// 	.attr('x', 40)
-				// 	.attr('y', function(d, i){ return i *  20;})
-				// 	.attr('width', 10)
-				// 	.attr('height', 10)
-				// 	.style('fill', function(d) { return color(d['region-name']);});
-				//
-			    // legend.selectAll('text')
-			    // 	.data(json)
-		        // 		.enter()
-			    // 	.append('legend')
-				// 	.attr('x', 50)
-			    // 	.attr('y', function(d, i){ return i *  20 + 9;})
-				// 	.text(function(d) {return d['region-name']});
-			});
-
-
 		</script>
 
 	</body>
